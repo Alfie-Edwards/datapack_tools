@@ -5,16 +5,16 @@ The goal of this library was to avoid having to manage multiple definitions of t
 Definitions in this library are also much more readable than plain json, and it is much easier to manage them in bulk.
 
 Functionality:
- - `items.py` Item Definitions
- - `mobs.py` Mob Definitions
- - `inventories.py` Inventoriy Definitions (for generating commands to e.g. modify block / entity inventories)
- - `loot_tables.py` Loot Table Definitions
- - `advancements.py` Advancement Definitions
+ - `items.py` Item definitions
+ - `mobs.py` Mob definitions
+ - `inventories.py` Inventoriy definitions (for generating commands to e.g. modify block / entity inventories)
+ - `loot_tables.py` Loot-table definitions
+ - `advancements.py` Advancement definitions
  - `vanilla_data.py` Tools to read and overwrite things from the vanilla datapack
  - `commands.py` For generating commands from definitions
  - `datapacks.py` For writing things to datapacks
  - `format.py` For converting between representations (e.g. markdown to minecraft json text definitions)
- - `data_types.py` Definitions for various datatypes used in minecraft json
+ - `data_types.py` Formatting for various datatypes used in minecraft json
 
 ## Scopes
 Lots of the library is built around a scoping mechanism. All of the functions for setting the properties of things like items and mobs act on the current scope.
