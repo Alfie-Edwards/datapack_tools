@@ -21,6 +21,7 @@ There are also three utility classes which extend the `Scope` class:
  - `RelativeScope(path)` Is a shortcut to scope through mulitple levels of dictionaries and lists.
  - `Tag(key, value)` Is a shortcut to add an entry to a dictionary scope.
  - `ListItem(value)` Is a shortcut to add an item to a list scope.
+
 Since these types inherit from `Scope`, you do not need to wrap them in a `Scope` object id you want to scope into them.
 All three of these types are used extensively in this library so that's the best place to look for examples.
 
