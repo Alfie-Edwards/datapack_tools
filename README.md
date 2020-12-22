@@ -1,14 +1,20 @@
 # datapack_tools
 A set of python tools for working with Minecraft Java Edition Datapacks
+
 The goal of this library was to avoid having to manage multiple definitions of the same thing within a datapack, most commonly with items.
 Definitions in this library are also much more readable than plain json, and it is much easier to manage them in bulk.
-Supported things:
- - Items `items.py`
- - Mobs `mobs.py`
- - Inventories `inventories.py` (e.g. generating commands to modify block / entity inventories)
- - Loot Tables `loot_tables.py`
- - Advancements `advancements.py`
- - Tools to read and overwrite things from the vanilla datapack `vanilla_data.py`
+
+Functionality:
+ - `items.py` Item Definitions
+ - `mobs.py` Mob Definitions
+ - `inventories.py` Inventoriy Definitions (for generating commands to e.g. modify block / entity inventories)
+ - `loot_tables.py` Loot Table Definitions
+ - `advancements.py` Advancement Definitions
+ - `vanilla_data.py` Tools to read and overwrite things from the vanilla datapack
+ - `commands.py` For generating commands from definitions
+ - `datapacks.py` For writing things to datapacks
+ - `format.py` For converting between representations (e.g. markdown to minecraft json text definitions)
+ - `data_types.py` Definitions for various datatypes used in minecraft json
 
 ## Scopes
 Lots of the library is built around a scoping mechanism. All of the functions for setting the properties of things like items and mobs act on the current scope.
