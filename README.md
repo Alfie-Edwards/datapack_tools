@@ -78,8 +78,8 @@ with Scope(mobs):
    with Tag("warden", Mob("iron_golem")):
       tag("warden")
       name("Warden")
-      effect(10, 1)
-      effect(11, 2)
+      effect("regeneration", 1)
+      effect("resistance", 2)
       attribute("follow_range", 4)
       attribute("movement_speed", 0.15)
       attribute("armor", 27)
@@ -118,6 +118,25 @@ for advancement_name in advancements:
    advancement = advancements[advancement_name]
    write_advancement(advancement_name, advancement, "example_namespace", "datapack_path")
 ```
+
+## Text format
+Text for things like names and lore uses a special syntax to control the formatting.
+Text decoration can by controlled using markdown-esque syntax:
+| Format               | Output                                                                  |
+|----------------------|-------------------------------------------------------------------------|
+| `**bold**`           | **bold**                                                                |
+| `__italic__`         | _italic_                                                                |
+| `++underlined++`     | u&#863;n&#863;d&#863;e&#863;r&#863;l&#863;i&#863;n&#863;e&#863;d&#863;  |
+| `~~strikethrough~~`  | ~~strikethrough~~                                                       |
+| `??obfuscated??`     | obfuscated                                                              |
+| `**mi~~xtu**re~~`    | __mi__***xtu***_re_                                                     |
+
+You can also add arbitrary tags to the text using the following formatting:
+
+`{color:red} This text is red {font:impact,color:blue} but this part is blue and in impact. {color:} This text is in impact {font:,color:#00ff00} and this text is green.`
+
+This allows you to specify things like color and font. The two types of formatting can be used together freely.
+
 
 ## Removing Vanilla Advancements
 ```
