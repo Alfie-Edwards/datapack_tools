@@ -119,7 +119,7 @@ for advancement_name in advancements:
    write_advancement(advancement_name, advancement, "example_namespace", "datapack_path")
 ```
 
-## Text format
+## Text Styling
 Text for things like names and lore uses a special syntax to control the formatting.
 Text decoration can by controlled using markdown-esque syntax:
 | Format               | Output                                                                  |
