@@ -2,24 +2,14 @@ import datapack_tools.data_types as dt
 import datapack_tools.format as fm
 from datapack_tools.scopes import *
 
-class VanillaItem(dict):
-   def __init__(self, id):
-      dict.__init__(self)
-      with Scope(self):
-         Tag("id", '"minecraft:{}"'.format(id))
-
 class Item(dict):
    def __init__(self, id):
       dict.__init__(self)
       with Scope(self):
-         Tag("id", '"minecraft:{}"'.format(id))
-         with RelativeScope("tag."):
-            Tag("HideFlags", dt.int(63))
-            Tag("Unbreakable", dt.TRUE)
+         id(id)
 
 def id(id):
-   with RelativeScope("tag.display."):
-      Tag("Name", fm.parse_text(name))
+   Tag("id", '"minecraft:{}"'.format(id))
 
 def name(name):
    with RelativeScope("tag.display."):
@@ -27,6 +17,32 @@ def name(name):
 
 def count(count):
    Tag("Count", dt.byte(count))
+
+def unbreakable():
+   with RelativeScope("tag"):
+      Tag("Unbreakable", dt.TRUE)
+
+def hide_all_flags():
+   hide_flags(True, True, True, True, True, True, True)
+
+def hide_flags(enchantments=False,
+               modifiers=False,
+               unbreakable=False,
+               can_destroy=False,
+               can_place_on=False,
+               hide_others=False,
+               dyed=False):
+   flags = (
+      (1 << 0) * int(enchantments) +
+      (1 << 1) * int(modifiers) +
+      (1 << 2) * int(unbreakable) +
+      (1 << 3) * int(can_destroy) +
+      (1 << 4) * int(can_place_on) +
+      (1 << 5) * int(hide_others) +
+      (1 << 6) * int(dyed)
+   )
+   with RelativeScope("tag"):
+      Tag("HideFlags", dt.int(flags))
 
 def lore(lore):
    with RelativeScope("tag.display.Lore["):
@@ -63,7 +79,7 @@ def attribute(id, level, *, operation=0, slot=None):
 
 def potion_effect(id, level, duration):
    with RelativeScope("tag.CustomPotionEffects[]."):
-      Tag("Id", dt.byte(id))
+      Tag("Id", parse_effect(id))
       Tag("Amplifier", dt.byte(level))
       Tag("Duration", dt.int(duration))
       Tag("ShowParticles", dt.FALSE)

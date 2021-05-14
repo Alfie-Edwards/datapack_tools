@@ -37,7 +37,7 @@ def offhand(item, *, drop=False):
 
 def effect(id, level, duration=2147483647):
    with RelativeScope("tag.ActiveEffects[]."):
-      Tag("Id", dt.byte(id))
+      Tag("Id", parse_effect(id))
       Tag("Amplifier", dt.byte(level))
       Tag("Duration", dt.int(duration))
       Tag("ShowParticles", dt.FALSE)
