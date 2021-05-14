@@ -132,9 +132,9 @@ Text decoration can by controlled using markdown-esque syntax:
 | `**mi~~xtu**re~~`    | __mi__***xtu***_re_                                                     |
 
 You can also add arbitrary tags to the text using the following formatting:
-
-`{color:red} This text is red {font:impact,color:blue} but this part is blue and in impact. {color:} This text is in impact {font:,color:#00ff00} and this text is green.`
-
+```
+{color:red} This text is red {font:impact,color:blue} but this part is blue and in impact. {color:} This text is in impact {font:,color:#00ff00} and this text is green.
+```
 This allows you to specify things like color and font. The two types of formatting can be used together freely.
 
 
