@@ -12,7 +12,10 @@ def _write(path, file_contents):
    f.close()
 
 def _split_path(path):
-   return re.split(r'[\/\\]+', path)
+   tokens = re.split(r'[\/\\]+', path)
+   if re.match(r'^[\/\\]+.*', path):
+      tokens.insert(0, os.path.sep)
+   return tokens
 
 def write_function(name, function, namespace, datapack_path):
    name += ".mcfunction"
