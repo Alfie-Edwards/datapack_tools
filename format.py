@@ -1,6 +1,6 @@
 import re
 from datapack_tools.scopes import *
-import data_types as dt
+import datapack_tools.data_types as dt
 
 EFFECT_IDS = {
    "speed":1,
