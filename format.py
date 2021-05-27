@@ -58,7 +58,7 @@ def parse_color(hex_code):
 def parse_effect(effect):
    if isinstance(effect, str):
       name = effect.lower().replace(" ", "_").replace("'", "")
-      if EFFECT_IDS.contains_key(name):
+      if name in EFFECT_IDS:
          return dt.byte(EFFECT_IDS[name])
       else:
          raise LookupError(f"No effect named {effect}")
