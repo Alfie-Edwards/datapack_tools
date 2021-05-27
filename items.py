@@ -62,6 +62,10 @@ def fireworks_explosion(explosion_type, colors, fade_colors, trail=False, flicke
       Tag("FadeColors", dt.int_list(fm.parse_color(color) for color in fade_colors))
       Tag("Colors", dt.int_list(fm.parse_color(color) for color in colors))
 
+def enchantment_glint():
+   with RelativeScope("tag.Enchantments[]"):
+      ListItem({})
+
 def enchantment(id, level=1):
    with RelativeScope("tag.Enchantments[]."):
       Tag("id", '"minecraft:{}"'.format(id))
