@@ -70,7 +70,7 @@ def parse_text(text):
    def tokenise(text):
       pos = 0
       tokens = []
-      for match in re.finditer(r'(?<!\\)(\*\*|__|\+\+|~~|\?\?| \{[^}]+\}|\{[^}]+\} ?)', text):
+      for match in re.finditer(r'(?<!\\)(\\|\*\*|__|\+\+|~~|\?\?| \{[^}]+\}|\{[^}]+\} ?)', text):
         if match.start() > pos:
             tokens.append(text[pos:match.start()])
         tokens.append(text[match.start():match.end()])
@@ -88,7 +88,9 @@ def parse_text(text):
       strikethrough = False # ~~text~~
       obfuscated = False # ??text??
       for token in tokenise(text):
-         if token == "**":
+         if token == "\\":
+            pass
+         elif token == "**":
             bold = not bold
          elif token == "__":
             italic = not italic
@@ -98,7 +100,7 @@ def parse_text(text):
             strikethrough = not strikethrough
          elif token == "??":
             obfuscated = not obfuscated
-         elif token.beginswith("{") or token.beginswith(" {"):
+         elif token.startswith("{") or token.startswith(" {"):
             for option in token.strip()[1:-1].split(","):
                i = option.find(":")
                if i != -1:
