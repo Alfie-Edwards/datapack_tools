@@ -83,7 +83,7 @@ def attribute(id, level, *, operation=0, slot=None):
 
 def potion_effect(id, level, duration):
    with RelativeScope("tag.CustomPotionEffects[]."):
-      Tag("Id", parse_effect(id))
+      Tag("Id", fm.parse_effect(id))
       Tag("Amplifier", dt.byte(level))
       Tag("Duration", dt.int(duration))
       Tag("ShowParticles", dt.FALSE)
