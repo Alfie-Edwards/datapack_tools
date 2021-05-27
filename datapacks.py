@@ -26,8 +26,6 @@ def write_loot_table(name, loot_table, namespace, datapack_path):
    _write(path, json.dumps(loot_table, indent=3))
 
 def datapack_exists(dir):
-   if not os.path.isdir(dir):
-      return False
    mcmeta_path = os.path.join(dir, "pack.mcmeta")
    if not os.path.exists(mcmeta_path):
       return False
