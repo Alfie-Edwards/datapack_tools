@@ -104,8 +104,8 @@ def parse_text(text):
             for option in token.strip()[1:-1].split(","):
                i = option.find(":")
                if i != -1:
-                  key = option[0:i]
-                  value = option[i+1:-1]
+                  key = option[:i]
+                  value = option[i+1:]
                   if value:
                      options[key] = value
                   else: # If value is blank reset it to default
