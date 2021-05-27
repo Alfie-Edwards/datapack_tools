@@ -120,8 +120,8 @@ for advancement_name in advancements:
 ```
 
 ## Text Styling
-Text for things like names and lore uses a special syntax to control the formatting.
-Text decoration can by controlled using markdown-esque syntax:
+Text for things like names and lore uses a special syntax for controlling styling.
+Common text decorations can by controlled using markdown-esque syntax:
 | Format               | Output                                                                  |
 |----------------------|-------------------------------------------------------------------------|
 | `**bold**`           | **bold**                                                                |
@@ -129,13 +129,15 @@ Text decoration can by controlled using markdown-esque syntax:
 | `++underlined++`     | u&#863;n&#863;d&#863;e&#863;r&#863;l&#863;i&#863;n&#863;e&#863;d&#863;  |
 | `~~strikethrough~~`  | ~~strikethrough~~                                                       |
 | `??obfuscated??`     | obfuscated                                                              |
-| `**mi~~xtu**re~~`    | __mi__***xtu***_re_                                                     |
+| `**mi__xtu**re__`    | __mi__***xtu***_re_                                                     |
 
-You can also add arbitrary tags to the text using the following formatting:
+You can also add arbitrary tags to the text using the following syntax:
 ```
 {color:red} This text is red {font:impact,color:blue} but this part is blue and in impact. {color:} This text is in impact {font:,color:#00ff00} and this text is green.
 ```
 This allows you to specify things like color and font. The two types of formatting can be used together freely.
+
+Backslashes can be used to escape special characters used for text styling `{}*_+~?`.
 
 
 ## Removing Vanilla Advancements
