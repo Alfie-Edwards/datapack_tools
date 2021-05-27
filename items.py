@@ -3,10 +3,10 @@ import datapack_tools.format as fm
 from datapack_tools.scopes import *
 
 class Item(dict):
-   def __init__(self, id):
+   def __init__(self, item_id):
       dict.__init__(self)
       with Scope(self):
-         id(id)
+         id(item_id)
 
 def id(id):
    Tag("id", '"minecraft:{}"'.format(id))
