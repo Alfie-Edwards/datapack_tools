@@ -7,7 +7,7 @@ Definitions in this library are also much more readable than plain json, and it 
 Functionality:
  - `items.py` Item definitions
  - `mobs.py` Mob definitions
- - `inventories.py` Inventoriy definitions (for generating commands to e.g. modify block / entity inventories)
+ - `inventories.py` Inventory definitions (for generating commands to e.g. modify block / entity inventories)
  - `loot_tables.py` Loot-table definitions
  - `advancements.py` Advancement definitions
  - `vanilla_data.py` Tools to read and overwrite things from the vanilla datapack
@@ -42,6 +42,8 @@ All three of these types are used extensively in this library so that's the best
 
 ## Items Example
 ```
+from datapack_tools import commands, datapacks
+from datapack_tools.scopes import Scope, Tag
 from datapack_tools.items import *
 
 items = {}
@@ -60,11 +62,13 @@ with Scope(items):
 for item_name in items:
    function = commands.item_give(items[item_name])
    name = "items/" + item_name
-   write_function(name, function, "example_namespace", "datapack_path")
+   datapacks.write_function(name, function, "example_namespace", "datapack_path")
 ```
 
 ## Mobs Example
 ```
+from datapack_tools import commands, datapacks
+from datapack_tools.scopes import Scope, Tag
 from datapack_tools.mobs import *
 
 mobs = {}
@@ -89,11 +93,13 @@ with Scope(mobs):
 for mob_name in mobs:
    function = commands.mob_summon(mobs[mob_name])
    name = "mobs\\" + mob_name
-   write_function(name, function, "example_namespace", "datapack_path")
+   datapacks.write_function(name, function, "example_namespace", "datapack_path")
 ```
 
 ## Advancements Example
 ```
+from datapack_tools import datapacks
+from datapack_tools.scopes import Scope, Tag
 from datapack_tools.advancements import *
 
 advancements = {}
@@ -116,7 +122,7 @@ with Scope(advancements):
 
 for advancement_name in advancements:
    advancement = advancements[advancement_name]
-   write_advancement(advancement_name, advancement, "example_namespace", "datapack_path")
+   datapacks.write_advancement(advancement_name, advancement, "example_namespace", "datapack_path")
 ```
 
 ## Text Styling
@@ -142,9 +148,9 @@ Backslashes can be used to escape special characters used for text styling `{}*_
 
 ## Removing Vanilla Advancements
 ```
-import datapack_tools.vanilla_data
+from datapack_tools import datapacks, vanilla_data
 from datapack_tools.advancements import NULL_ADVANCEMENT
 
 for name in vanilla_data.get_advancement_names():
-   write_advancement(name, NULL_ADVANCEMENT, "minecraft", "datapack_path")
+   datapacks.write_advancement(name, NULL_ADVANCEMENT, "minecraft", "datapack_path")
 ```
