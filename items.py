@@ -9,7 +9,7 @@ class Item(dict):
          id(item_id)
 
 def id(id):
-   Tag("id", '"minecraft:{}"'.format(id))
+   Tag("id", dt.string(f"minecraft:{id}"))
 
 def name(name):
    with RelativeScope("tag.display."):
@@ -68,13 +68,13 @@ def enchantment_glint():
 
 def enchantment(id, level=1):
    with RelativeScope("tag.Enchantments[]."):
-      Tag("id", '"minecraft:{}"'.format(id))
+      Tag("id", dt.string(f"minecraft:{id}"))
       Tag("lvl", dt.short(level))
 
 def attribute(id, level, *, operation=0, slot=None):
    with RelativeScope("tag.AttributeModifiers[]."):
-      Tag("AttributeName", dt.string("generic.{}".format(id)))
-      Tag("Name", dt.string("generic.{}".format(id)))
+      Tag("AttributeName", dt.string(f"generic.{id}"))
+      Tag("Name", dt.string(f"generic.{id}"))
       Tag("Amount", level)
       Tag("Operation", dt.int(operation))
       Tag("UUID", dt.uuid())
@@ -90,7 +90,7 @@ def potion_effect(id, level, duration):
 
 def potion_type(potion_type):
    with RelativeScope("tag."):
-      Tag("Potion", '"minecraft:{}"'.format(potion_type))
+      Tag("Potion", dt.string(f"minecraft:{potion_type}"))
 
 def potion_color(color):
    with RelativeScope("tag."):
@@ -98,11 +98,11 @@ def potion_color(color):
 
 def can_destroy(block):
    with RelativeScope("tag.CanDestroy["):
-      ListItem('"minecraft:{}"'.format(block))
+      ListItem(dt.string(f"minecraft:{block}"))
 
 def can_place_on(block):
    with RelativeScope("tag.CanPlaceOn["):
-      ListItem('"minecraft:{}"'.format(block))
+      ListItem(dt.string(f"minecraft:{block}"))
 
 def spawn_egg_mob(mob):
    with RelativeScope("tag."):

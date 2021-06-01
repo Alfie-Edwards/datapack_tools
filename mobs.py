@@ -9,7 +9,7 @@ class Mob(dict):
       dict.__init__(self)
 
       with Scope(self):
-         Tag("id", '"minecraft:{}"'.format(id))
+         Tag("id", dt.string(f"minecraft:{id}"))
          with RelativeScope("tag."):
             Tag("DeathLootTable", "none")
             Tag("PersistenceRequired", dt.TRUE)
@@ -54,7 +54,7 @@ def dialogue(text):
 
 def attribute(id, value):
    with RelativeScope("tag.Attributes[]."):
-      Tag("Name", "generic.{}".format(id))
+      Tag("Name", "generic.{id}")
       Tag("Base", value)
 
 def tag(tag):

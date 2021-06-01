@@ -6,7 +6,7 @@ class LootTable(dict):
       dict.__init__(self)
 
 def type(type_name):
-   Tag("type", "minecraft:{}".format(type_name))
+   Tag("type", f"minecraft:{type_name}")
 
 def rolls(rolls):
    with RelativeScope("pools[0]."):

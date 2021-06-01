@@ -21,7 +21,7 @@ def description(description):
 
 def icon_item(item_name):
    with RelativeScope("display.icon."):
-      Tag("item", "minecraft:{}".format(item_name))
+      Tag("item", f"minecraft:{item_name}")
 
 def frame(frame_type):
    with RelativeScope("display."):
@@ -29,14 +29,14 @@ def frame(frame_type):
 
 def background_block(block):
    with RelativeScope("display."):
-      Tag("background", "minecraft:textures/block/{}.png".format(block))
+      Tag("background", f"minecraft:textures/block/{block}.png")
 
 def criteria_impossible():
    with RelativeScope("criteria.imposible."):
       Tag("trigger", "minecraft:impossible")
 
 def criteria_item(item):
-   with RelativeScope("criteria.has_{}.".format(item_name)):
+   with RelativeScope(f"criteria.has_{item_name}."):
       Tag("trigger", "minecraft:inventory_changed")
       with Tag("conditions", {}):
          with Tag("items", []):
@@ -65,7 +65,7 @@ def criteria_location(x1, y1, z1, x2, y2, z2):
 
 def reward_recipe(item_name):
    with RelativeScope("rewards.recipes["):
-      ListItem("minecraft:{}".format(item_name))
+      ListItem(f"minecraft:{item_name}")
 
 def reward_xp(xp):
    with RelativeScope("rewards."):
