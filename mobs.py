@@ -5,15 +5,13 @@ import datapack_tools.format as fm
 from datapack_tools.scopes import *
 
 class Mob(dict):
-   def __init__(self, id):
+   def __init__(self, mob_id):
       dict.__init__(self)
-
       with Scope(self):
-         Tag("id", dt.string(f"minecraft:{id}"))
-         with RelativeScope("tag."):
-            Tag("DeathLootTable", "none")
-            Tag("PersistenceRequired", dt.TRUE)
-            Tag("CanPickUpLoot", dt.FALSE)
+         id(mob_id)
+
+def id(id):
+   Tag("id", dt.string(f"minecraft:{id}"))
 
 def name(name):
    with RelativeScope("tag."):
@@ -161,3 +159,15 @@ def tropical_fish_variant(variant):
 def baby():
    with RelativeScope("tag."):
       Tag("IsBaby", dt.TRUE)
+
+def death_loot_table(loot_table_id):
+   with RelativeScope("tag."):
+      Tag("DeathLootTable", loot_table_id)
+
+def persistence_required():
+   with RelativeScope("tag."):
+      Tag("PersistenceRequired", dt.TRUE)
+
+def prevent_loot_pickup():
+   with RelativeScope("tag."):
+      Tag("CanPickUpLoot", dt.FALSE)
