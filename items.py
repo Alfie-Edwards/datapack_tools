@@ -8,6 +8,15 @@ class Item(dict):
       with Scope(self):
          id(item_id)
 
+# Optional argument type specifies a type function such as data_types.short
+# If no value is specified a type will be automatically determined based on the python type
+def custom(key, value, type=None):
+   with RelativeScope("tag."):
+      if type is None:
+         Tag(str(key), dt.auto(value))
+      else:
+         tag(str(key), type(value))
+
 def id(id):
    Tag("id", dt.string(f"minecraft:{id}"))
 

@@ -29,3 +29,14 @@ def int_list(*ints):
 
 def string(s):
    return f'"{s}"'
+
+def auto(value):
+   if isinstance(value, str):
+      return dt.string(value)
+   if isinstance(value, bool):
+      return dt.bool(value)
+   if isinstance(value, int):
+      return dt.int(value)
+   if isinstance(value, float):
+      return dt.float(value)
+   raise ValueError(f"Unable to determine a minecraft json type for {type(value)}")
