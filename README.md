@@ -7,7 +7,7 @@ Definitions in this library are also much more readable than plain json, and it 
 Functionality:
  - `items.py` Item definitions
  - `mobs.py` Mob definitions
- - `inventories.py` Inventoriy definitions (for generating commands to e.g. modify block / entity inventories)
+ - `inventories.py` Inventory definitions (for generating commands to e.g. modify block / entity inventories)
  - `loot_tables.py` Loot-table definitions
  - `advancements.py` Advancement definitions
  - `vanilla_data.py` Tools to read and overwrite things from the vanilla datapack
