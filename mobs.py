@@ -168,6 +168,10 @@ def persistence_required():
    with RelativeScope("tag."):
       Tag("PersistenceRequired", dt.TRUE)
 
-def prevent_loot_pickup():
+def can_pickup_loot():
    with RelativeScope("tag."):
-      Tag("CanPickUpLoot", dt.FALSE)
+      Tag("CanPickUpLoot", dt.TRUE)
+
+def cannot_pickup_loot():
+   with RelativeScope("tag."):
+      Tag("CanPickUpLoot", dt.False)
