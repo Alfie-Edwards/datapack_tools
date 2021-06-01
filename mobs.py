@@ -174,4 +174,4 @@ def can_pickup_loot():
 
 def cannot_pickup_loot():
    with RelativeScope("tag."):
-      Tag("CanPickUpLoot", dt.False)
+      Tag("CanPickUpLoot", dt.FALSE)
