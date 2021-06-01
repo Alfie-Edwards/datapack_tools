@@ -32,11 +32,11 @@ def string(s):
 
 def auto(value):
    if isinstance(value, str):
-      return dt.string(value)
+      return string(value)
    if isinstance(value, bool):
-      return dt.bool(value)
+      return bool(value)
    if isinstance(value, int):
-      return dt.int(value)
+      return int(value)
    if isinstance(value, float):
-      return dt.float(value)
+      return float(value)
    raise ValueError(f"Unable to determine a minecraft json type for {type(value)}")
