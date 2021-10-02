@@ -13,11 +13,10 @@ class Mob(dict):
 def id(id):
    Tag("id", dt.string(f"minecraft:{id}"))
 
-def name(name, only_show_on_mouseover=False, hide=False):
+def name(name, always_show=False, hide=False):
    with RelativeScope("tag."):
       Tag("CustomName", fm.parse_text(name))
-      if only_show_on_mouseover:
-         Tag("CustomNameVisible", dt.int(0))
+      Tag("CustomNameVisible", dt.bool(always_show))
    if hide:
       with RelativeScope("tag.Passengers["):
          with ListItem({}):
