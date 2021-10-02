@@ -21,7 +21,7 @@ def name(name, only_show_on_mouseover=False, hide=False):
    if hide:
       with RelativeScope("tag.Passengers["):
          with ListItem({}):
-            id("ArmorStand")
+            id("armor_stand")
             armor_stand_invisible()
             armor_stand_marker()
 
