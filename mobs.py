@@ -57,7 +57,7 @@ def dialogue(text):
 
 def attribute(id, value):
    with RelativeScope("tag.Attributes[]."):
-      Tag("Name", "generic.{id}")
+      Tag("Name", f"generic.{id}")
       Tag("Base", value)
 
 def tag(tag):
