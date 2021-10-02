@@ -13,9 +13,17 @@ class Mob(dict):
 def id(id):
    Tag("id", dt.string(f"minecraft:{id}"))
 
-def name(name):
+def name(name, only_show_on_mouseover=False, hide=False):
    with RelativeScope("tag."):
       Tag("CustomName", fm.parse_text(name))
+      if only_show_on_mouseover:
+         Tag("CustomNameVisible", dt.int(0))
+   if hide:
+      with RelativeScope("tag.Passengers["):
+         with ListItem({}):
+            id("ArmorStand")
+            armor_stand_invisible()
+            armor_stand_marker()
 
 def age(age):
    with RelativeScope("tag."):
@@ -83,6 +91,10 @@ def silent():
 def armor_stand_invisible():
    with RelativeScope("tag."):
       Tag("Invisible", dt.TRUE)
+
+def armor_stand_marker():
+   with RelativeScope("tag."):
+      Tag("Marker", dt.TRUE)
 
 def helmet(item, *, drop=False):
    with RelativeScope("tag.ArmorDropChances["):
