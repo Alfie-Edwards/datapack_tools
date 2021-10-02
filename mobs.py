@@ -27,6 +27,11 @@ def holding(item, *, drop=False):
    with RelativeScope("tag.HandItems["):
       ListItem(item, index=0)
 
+def holding_nothing():
+   with RelativeScope("tag.HandItems["):
+      ListItem({}, index=0)
+      ListItem({}, index=1)
+
 def offhand(item, *, drop=False):
    with RelativeScope("tag.HandDropChances["):
       ListItem(dt.float(2 if drop else 0), index=1, pad=dt.float(0))
