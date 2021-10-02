@@ -22,8 +22,8 @@ def name(name, only_show_on_mouseover=False, hide=False):
       with RelativeScope("tag.Passengers["):
          with ListItem({}):
             id("armor_stand")
-            armor_stand_invisible()
-            armor_stand_marker()
+            Tag("Invisible", dt.TRUE)
+            Tag("Marker", dt.TRUE)
 
 def age(age):
    with RelativeScope("tag."):
