@@ -13,6 +13,9 @@ class Mob(dict):
 def id(id):
    Tag("id", dt.string(f"minecraft:{id}"))
 
+# If using hide=True, you will need to clean up the marker armor stands when
+# the mob dies. This can be done by running the following command:
+# tp @e[tag=name_hider] ~ -1000 ~
 def name(name, always_show=False, hide=False):
    with RelativeScope("tag."):
       Tag("CustomName", fm.parse_text(name))
@@ -21,6 +24,7 @@ def name(name, always_show=False, hide=False):
       with RelativeScope("tag.Passengers["):
          with ListItem({}):
             id("armor_stand")
+            tag("name_hider")
             Tag("Invisible", dt.TRUE)
             Tag("Marker", dt.TRUE)
 
