@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 import datapack_tools.items as items
 from datapack_tools.items import Item
 import datapack_tools.data_types as dt
@@ -21,12 +23,22 @@ def name(name, always_show=False, hide=False):
       Tag("CustomName", fm.parse_text(name))
       Tag("CustomNameVisible", dt.bool(always_show))
    if hide:
-      with RelativeScope("tag.Passengers["):
-         with ListItem({}):
-            id("armor_stand")
-            tag("name_hider")
-            Tag("Invisible", dt.TRUE)
-            Tag("Marker", dt.TRUE)
+      name_hider = Mob("armor_stand")
+      with Scope(name_hider):
+         tag("name_hider")
+         armor_stand_invisible()
+         armor_stand_marker()
+      passenger(name_hider)
+
+def passenger(passenger):
+   with RelativeScope("tag.Passengers[]."):
+      for key in passenger:
+         # Passengers don't have their tags under the "tag" top-level.
+         if key == "tag":
+            for nested_key in passenger["tag"]:
+               Tag(nested_key, deepcopy(passenger["tag"][nested_key]))
+         else:
+            Tag(key, deepcopy(passenger[key])
 
 def age(age):
    with RelativeScope("tag."):
