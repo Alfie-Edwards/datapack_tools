@@ -38,7 +38,7 @@ def passenger(passenger):
             for nested_key in passenger["tag"]:
                Tag(nested_key, deepcopy(passenger["tag"][nested_key]))
          else:
-            Tag(key, deepcopy(passenger[key])
+            Tag(key, deepcopy(passenger[key]))
 
 def age(age):
    with RelativeScope("tag."):
