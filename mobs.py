@@ -17,7 +17,9 @@ def id(id):
 
 # If using hide=True, you will need to clean up the marker armor stands when
 # the mob dies. This can be done by running the following command:
-# tp @e[tag=name_hider] ~ -1000 ~
+# execute as @e[tag=name_hider] at @s unless entity @e[dx=0,dy=0,dz=0,nbt={Passengers:[{Tags:["name_hider"]}]}] run kill
+# This should happen after the death animation of the entity to ensure the name
+# remains hidden through the animation.
 def name(name, always_show=False, hide=False):
    with RelativeScope("tag."):
       Tag("CustomName", fm.parse_text(name))
