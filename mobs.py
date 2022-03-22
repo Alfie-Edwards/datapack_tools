@@ -6,7 +6,7 @@ import datapack_tools.data_types as dt
 import datapack_tools.format as fm
 from datapack_tools.scopes import *
 
-def _default_item_count(item, default=1)
+def _default_item_count(item, default=1):
    if not "Count" in item:
       with Scope(item):
          items.count(default)
