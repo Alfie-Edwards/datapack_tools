@@ -196,7 +196,7 @@ def baby():
 
 def death_loot_table(loot_table_id):
    with RelativeScope("tag."):
-      Tag("DeathLootTable", loot_table_id)
+      Tag("DeathLootTable", dt.string(loot_table_id))
 
 def no_loot():
    death_loot_table("")
