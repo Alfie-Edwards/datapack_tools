@@ -79,6 +79,8 @@ def parse_text(text):
         tokens.append(text[pos:])
       return tokens
 
+   text = text.replace("\n", "\\n") # Escape newlines.
+   text = text.replace("\\", "\\\\") # Escape backslashes.
    sections = []
    with Scope(sections):
       options = {} # {color:#12312,font=comic sans} text {color:,font:}

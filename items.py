@@ -131,3 +131,7 @@ def shield_pattern(pattern_id, color_id):
       with ListItem({}):
          Tag("Pattern", pattern_id)
          Tag("Color", color_id)
+
+def book_page(text):
+   with RelativeScope("tag.pages["):
+      ListItem(fm.parse_text(text))
