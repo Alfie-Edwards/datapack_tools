@@ -198,6 +198,9 @@ def death_loot_table(loot_table_id):
    with RelativeScope("tag."):
       Tag("DeathLootTable", loot_table_id)
 
+def no_loot():
+   death_loot_table("")
+
 def persistence_required():
    with RelativeScope("tag."):
       Tag("PersistenceRequired", dt.TRUE)
