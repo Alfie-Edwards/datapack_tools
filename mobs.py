@@ -6,6 +6,11 @@ import datapack_tools.data_types as dt
 import datapack_tools.format as fm
 from datapack_tools.scopes import *
 
+def _default_item_count(item, default=1)
+   if not "Count" in item:
+      with Scope(item):
+         items.count(default)
+
 class Mob(dict):
    def __init__(self, mob_id):
       dict.__init__(self)
@@ -47,6 +52,7 @@ def age(age):
       Tag("Age", dt.int(age))
 
 def holding(item, *, drop=False):
+   _default_item_count(item)
    with RelativeScope("tag.HandDropChances["):
       ListItem(dt.float(2 if drop else 0), index=0)
    with RelativeScope("tag.HandItems["):
@@ -58,6 +64,7 @@ def holding_nothing():
       ListItem({}, index=1)
 
 def offhand(item, *, drop=False):
+   _default_item_count(item)
    with RelativeScope("tag.HandDropChances["):
       ListItem(dt.float(2 if drop else 0), index=1, pad=dt.float(0))
    with RelativeScope("tag.HandItems["):
@@ -114,24 +121,28 @@ def armor_stand_marker():
       Tag("Marker", dt.TRUE)
 
 def helmet(item, *, drop=False):
+   _default_item_count(item)
    with RelativeScope("tag.ArmorDropChances["):
       ListItem(dt.float(2 if drop else 0), index=3, pad=dt.float(0))
    with RelativeScope("tag.ArmorItems["):
       ListItem(item, index=3, pad={})
 
 def chestplate(item, *, drop=False):
+   _default_item_count(item)
    with RelativeScope("tag.ArmorDropChances["):
       ListItem(dt.float(2 if drop else 0), index=2, pad=dt.float(0))
    with RelativeScope("tag.ArmorItems["):
       ListItem(item, index=2, pad={})
 
 def leggings(item, *, drop=False):
+   _default_item_count(item)
    with RelativeScope("tag.ArmorDropChances["):
       ListItem(dt.float(2 if drop else 0), index=1, pad=dt.float(0))
    with RelativeScope("tag.ArmorItems["):
       ListItem(item, index=1, pad={})
 
 def boots(item, *, drop=False):
+   _default_item_count(item)
    with RelativeScope("tag.ArmorDropChances["):
       ListItem(dt.float(2 if drop else 0), index=0)
    with RelativeScope("tag.ArmorItems["):
@@ -146,6 +157,10 @@ def villager_type(biome=None, profession=None):
          Tag("type", biome)
 
 def villager_trade(sell, buy, buy2=None, *, hide_buy_lore=True):
+   _default_item_count(sell)
+   _default_item_count(buy)
+   if buy2 is not None:
+      _default_item_count(buy2)
    if hide_buy_lore:
       if "tag" in buy and "display" in buy["tag"] and "Lore" in buy["tag"]["display"]:
          buy["tag"]["display"].pop("Lore")
