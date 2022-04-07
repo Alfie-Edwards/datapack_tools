@@ -41,16 +41,16 @@ def is_string(x):
    return isinstance(x, builtins.str)
 
 _TYPE_TEST_FUNCTIONS = [
-   is_byte
-   is_short
-   is_int
-   is_long
-   is_float
-   is_double
-   is_byte_array
-   is_short_array
-   is_int_array
-   is_long_array
+   is_byte,
+   is_short,
+   is_int,
+   is_long,
+   is_float,
+   is_double,
+   is_byte_array,
+   is_short_array,
+   is_int_array,
+   is_long_array,
    is_string
 ]
 
