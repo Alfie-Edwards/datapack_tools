@@ -68,8 +68,8 @@ def fireworks_explosion(explosion_type, colors, fade_colors, trail=False, flicke
          Tag("Trail", dt.int(1))
       if flicker:
          Tag("Flicker", dt.int(1))
-      Tag("FadeColors", dt.int_list(fm.parse_color(color) for color in fade_colors))
-      Tag("Colors", dt.int_list(fm.parse_color(color) for color in colors))
+      Tag("FadeColors", dt.int_array(fm.parse_color(color) for color in fade_colors))
+      Tag("Colors", dt.int_array(fm.parse_color(color) for color in colors))
 
 def enchantment_glint():
    with RelativeScope("tag.Enchantments[]"):

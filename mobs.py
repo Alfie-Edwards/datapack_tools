@@ -195,11 +195,11 @@ def creeper_charged():
 
 def uuid(id1, id2, id3, id4):
    with RelativeScope("tag."):
-      Tag("UUID", dt.int_list(id1, id2, id3, id4))
+      Tag("UUID", dt.int_array(id1, id2, id3, id4))
 
 def projectile_owner(id1, id2, id3, id4):
    with RelativeScope("tag."):
-      Tag("UUID", dt.int_list(id1, id2, id3, id4))
+      Tag("UUID", dt.int_array(id1, id2, id3, id4))
 
 def tropical_fish_variant(variant):
    with RelativeScope("tag."):
