@@ -73,7 +73,7 @@ def bool(b):
    return TRUE if b else FALSE
 
 def short(s):
-   if _is_string_matching(s, r"^\\d+s$"):
+   if is_short(s):
       return s
    return f"{builtins.int(s)}s"
 
@@ -93,26 +93,34 @@ def float(f):
    return f"{builtins.float(f)}f"
 
 def double(d):
-   if _is_string_matching(d, r"^\\d+d$"):
+   if is_double(d):
       return d
    return f"{builtins.float(d)}d"
 
 def byte_array(*bytes):
+   if len(bytes) == 1 and is_byte_array(bytes[0]):
+      return bytes[0]
    if len(bytes) == 1 and hasattr(bytes[0], '__iter__'):
       bytes = bytes[0]
    return f"[B;{','.join(byte(b) for b in bytes)}]"
 
 def short_array(*shorts):
+   if len(shorts) == 1 and is_short_array(shorts[0]):
+      return shorts[0]
    if len(shorts) == 1 and hasattr(shorts[0], '__iter__'):
       shorts = shorts[0]
    return f"[S;{','.join(short(s) for s in shorts)}]"
 
 def int_array(*ints):
+   if len(ints) == 1 and is_int_array(ints[0]):
+      return ints[0]
    if len(ints) == 1 and hasattr(ints[0], '__iter__'):
       ints = ints[0]
    return f"[I;{','.join(int(i) for i in ints)}]"
 
 def long_array(*longs):
+   if len(longs) == 1 and is_long_array(longs[0]):
+      return longs[0]
    if len(longs) == 1 and hasattr(longs[0], '__iter__'):
       longs = longs[0]
    return f"[L;{','.join(long(l) for l in longs)}]"
