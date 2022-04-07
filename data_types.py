@@ -147,8 +147,8 @@ def _min_signed(bits):
 def _max_signed(bits):
    return (2 ** (bits - 1)) - 1
 
-MAX_INT = _max_signed(64)
-MIN_INT = _min_signed(64)
+MAX_LONG = _max_signed(64)
+MIN_LONG = _min_signed(64)
 MAX_INT = _max_signed(32)
 MIN_INT = _min_signed(32)
 MAX_SHORT = _max_signed(16)
