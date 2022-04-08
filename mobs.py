@@ -35,6 +35,7 @@ def name(name, always_show=False, hide=False):
          tag("name_hider")
          armor_stand_invisible()
          armor_stand_marker()
+         silent()
       passenger(name_hider)
 
 def passenger(passenger):
@@ -70,7 +71,7 @@ def offhand(item, *, drop=False):
    with RelativeScope("tag.HandItems["):
       ListItem(item, index=1, pad={})
 
-def effect(id, level, duration=2147483647):
+def effect(id, level, duration=dt.MAX_INT):
    with RelativeScope("tag.ActiveEffects[]."):
       Tag("Id", fm.parse_effect(id))
       Tag("Amplifier", dt.byte(level))
@@ -187,7 +188,15 @@ def snow_golem_pumpkin(pumpkin):
 
 def creeper_fuse(fuse):
    with RelativeScope("tag."):
-      Tag("Pumpkin", dt.int(fuse))
+      Tag("Fuse", dt.int(fuse))
+
+def creeper_explosion_radius(radius):
+   with RelativeScope("tag."):
+      Tag("ExplosionRadius", dt.byte(radius))
+
+def creeper_ignited():
+   with RelativeScope("tag."):
+      Tag("ignited", dt.TRUE)
 
 def creeper_charged():
    with RelativeScope("tag."):
