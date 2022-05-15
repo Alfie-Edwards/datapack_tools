@@ -74,9 +74,9 @@ def escape_text(text):
       "\\": "\\\\\\\\",
       "\'": "\\\\\\\'", # Special case, needs an extra \
       "\"": "\\\\\"",
-      "\n": "\\\\n'",
-      "\r": "\\\\r'",
-      "\t": "\\\\t'",
+      "\n": "\\\\n",
+      "\r": "\\\\r",
+      "\t": "\\\\t",
    }
    return text.translate(str.maketrans(substitutions))
 
