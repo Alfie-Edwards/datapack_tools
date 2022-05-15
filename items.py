@@ -132,6 +132,14 @@ def shield_pattern(pattern_id, color_id):
          Tag("Pattern", pattern_id)
          Tag("Color", color_id)
 
+def book_author(author):
+   with RelativeScope("tag."):
+      Tag("author", dt.string(author))
+
+def book_title(title):
+   with RelativeScope("tag."):
+      Tag("title", dt.string(title))
+
 def book_page(text):
    with RelativeScope("tag.pages["):
       ListItem(fm.parse_text(text))
