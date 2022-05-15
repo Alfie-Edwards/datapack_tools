@@ -69,6 +69,18 @@ def parse_effect(effect):
       return dt.byte(effect)
 
 
+def escape_text(text):
+   substitutions = {
+      "\\": "\\\\\\\\",
+      "\'": "\\\\\\\'", # Special case, needs an extra \
+      "\"": "\\\\\"",
+      "\n": "\\\\n'",
+      "\r": "\\\\r'",
+      "\t": "\\\\t'",
+   }
+   return text.translate(str.maketrans(substitutions))
+
+
 def parse_text(text):
    def tokenise(text):
       pos = 0
@@ -117,8 +129,8 @@ def parse_text(text):
          else:
             # Remove all escapes.
             token = re.sub(r"\\.", lambda m : m.group(0)[1], token)
-            # Reescape characters nessecary for json, trim added quotes.
-            token = json.dumps(token)[1:-1]
+            # Reescape characters for minecraft json.
+            token = escape_text(token)
             with ListItem({}):
                Tag("text", token)
                if bold:
