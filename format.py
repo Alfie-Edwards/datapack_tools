@@ -1,3 +1,4 @@
+import json
 import re
 from datapack_tools.scopes import *
 import datapack_tools.data_types as dt
@@ -37,6 +38,7 @@ EFFECT_IDS = {
    "hero_of_the_village": 32,
 }
 
+
 def recursive_to_string(o, *, format="{}", list_format='[{}]', dict_format='{{{}}}', tag_format='{}:{}', deliminator=','):
    def _recursive_to_string(o, list_format, dict_format, tag_format, deliminator):
       if isinstance(o, dict):
@@ -55,6 +57,7 @@ def recursive_to_string(o, *, format="{}", list_format='[{}]', dict_format='{{{}
 def parse_color(hex_code):
    return int(hex_code[1:], 16)
 
+
 def parse_effect(effect):
    if isinstance(effect, str):
       name = effect.lower().replace(" ", "_").replace("'", "")
@@ -70,17 +73,18 @@ def parse_text(text):
    def tokenise(text):
       pos = 0
       tokens = []
-      for match in re.finditer(r'(?<!\\)(\\|\*\*|__|\+\+|~~|\?\?| \{[^}]+\}|\{[^}]+\} ?)', text):
-        if match.start() > pos:
+      for match in re.finditer(r'(\\.|\*\*|__|\+\+|~~|\?\?| \{[^}]+\}|\{[^}]+\} ?)', text):
+         # Ignore escaped characters.
+         if text[match.start()] == "\\":
+            continue
+         if match.start() > pos:
             tokens.append(text[pos:match.start()])
-        tokens.append(text[match.start():match.end()])
-        pos = match.end()
+         tokens.append(text[match.start():match.end()])
+         pos = match.end()
       if pos < len(text):
-        tokens.append(text[pos:])
+         tokens.append(text[pos:])
       return tokens
 
-   text = text.replace("\n", "\\n") # Escape newlines.
-   text = text.replace("\\", "\\\\") # Escape backslashes.
    sections = []
    with Scope(sections):
       options = {} # {color:#12312,font=comic sans} text {color:,font:}
@@ -90,9 +94,7 @@ def parse_text(text):
       strikethrough = False # ~~text~~
       obfuscated = False # ??text??
       for token in tokenise(text):
-         if token == "\\":
-            pass
-         elif token == "**":
+         if token == "**":
             bold = not bold
          elif token == "__":
             italic = not italic
@@ -113,6 +115,10 @@ def parse_text(text):
                   else: # If value is blank reset it to default
                      options.remove(key)
          else:
+            # Remove all escapes.
+            token = re.sub(r"\\.", lambda m : m.group(0)[1], token)
+            # Reescape characters nessecary for json, trim added quotes.
+            token = json.dumps(token)[1:-1]
             with ListItem({}):
                Tag("text", token)
                if bold:
@@ -134,4 +140,3 @@ def parse_text(text):
       sections = sections[0]
 
    return "'{}'".format(recursive_to_string(sections, tag_format='"{}":"{}"'))
-
