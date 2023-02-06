@@ -1,5 +1,5 @@
 # datapack_tools
-A set of python tools for working with Minecraft Java Edition Datapacks
+A set of python tools for working with Minecraft Java Edition Datapacks.
 
 The goal of this library was to avoid having to manage multiple definitions of the same thing within a datapack, most commonly with items.
 Definitions in this library are also much more readable than plain json, and it is much easier to manage them in bulk.
@@ -28,7 +28,7 @@ from datapack_tools.items import *
 special_coal = Item("coal")
 with Scope(special_coal):
    # functions to setup your item
-   name("Special Coal)
+   name("Special Coal")
    enchantment("fire_aspect", 3)
 ```
 
